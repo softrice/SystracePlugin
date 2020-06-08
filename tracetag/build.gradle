@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'com.novoda.bintray-release'
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def sdkDir = properties.getProperty('sdk.dir')//获取ANDROID_HOME
+
+dependencies {
+//    compileOnly files('/Users/userName/Library/Android/sdk/platforms/android-26/android.jar')
+    // 本地依赖adk 如果版本号不存在 修改存在的版本号
+    compileOnly(files("$sdkDir/platforms/android-26/android.jar"))
+}
+
+
+publish {
+    userOrg = 'huangzhangshuai'
+
+    groupId = 'com.softrice.systrace'
+
+    artifactId = 'tracetag'
+
+    publishVersion = '1.0.0'
+
+    desc = 'trace tag'
+}
+
+tasks.withType(Javadoc) { // 新增
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+}

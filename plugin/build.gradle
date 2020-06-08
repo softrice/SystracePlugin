@@ -1,0 +1,49 @@
+apply plugin: 'groovy'
+apply plugin: 'java'
+//apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
+sourceSets {
+    main {
+        groovy {
+            srcDir '../plugin/src/main/groovy'
+        }
+
+        java {
+            srcDir "../plugin/src/main/java"
+        }
+
+        resources {
+            srcDir '../plugin/src/main/resources'
+        }
+    }
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation group: 'org.ow2.asm', name: 'asm', version: '5.1'
+    implementation group: 'org.ow2.asm', name: 'asm-commons', version: '5.1'
+    implementation 'com.android.tools.build:gradle:3.2.1'
+    implementation 'com.android.tools.lint:lint:26.0.1'
+    implementation 'com.android.tools.lint:lint-api:26.0.1'
+    implementation 'com.android.tools.lint:lint-checks:26.0.1'
+
+    compileOnly(project(path: ':tracetag')) {
+        exclude group: 'java'
+    }
+}
+
+
+publish {
+
+    userOrg = 'huangzhangshuai'
+
+    groupId = 'com.softrice.systrace'
+
+    artifactId = 'SystracePlugin'
+
+    publishVersion = '1.0.0'
+
+    desc = 'Android plugin for systrace'
+
+}
