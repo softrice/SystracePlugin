@@ -1,5 +1,7 @@
 # SystracePlugin
 通过AOP的形式在方法的进入和退出插入Trace.beginSection(name)和Trace.endSection()。配合使用Systrace即可在应用运行期获取详细的方法耗时信息。
+<br>相比于TraceView，这种方式对应用的负担轻，能更好的反应应用实际的耗时情况。
+<br>适用于应用的冷启分析、卡顿分析等。
 
 ### 使用方法
 #### 依赖配置
@@ -28,7 +30,7 @@ blackListFile文件内可配置过滤包、类
 # 可以将某个package加入白名单中
 #-keeppackage com/sample/systrace/
 ```
-集成完毕后编译安装应用，修改后的字节码会输出存放在 build/systrace_output中。可以看到方法的前后插入和Trace代码。
+集成完毕后编译安装应用，修改后的字节码会输出存放在 build/systrace_output中。可以看到方法的前后插入的Trace代码。
 ```
 //示例
 public class App extends Application {
@@ -42,7 +44,8 @@ public class App extends Application {
 }
 ```
 #### 使用Systrace
-Systrace是Android4.1引入的性能分析工具。默认存放在$ANDROID_HOME/platform-tools/systrace文件夹下。
+Systrace是Android4.1引入的性能分析工具。
+默认存放在$ANDROID_HOME/platform-tools/systrace文件夹下。
 <br>运行以下命令启动Systrace，就会记录应用的运行情况。
 <br>再输入回车即可结束记录，并输出test.html。
 > python $ANDROID_HOME/platform-tools/systrace/systrace.py -a yourPackageName -o test.html -b 20480
