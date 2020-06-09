@@ -14,14 +14,9 @@ android {
     }
 }
 
-dependencies {
-    implementation(project(path: ':tracetag'))
-//    implementation 'com.vdian.android.systrace:tracetag:0.0.1'
+apply plugin: 'systrace-plugin'
+systrace {
+    enable = true
+    baseMethodMapFile = "${project.buildDir}/systrace_output/Debug.methodmap"
+    blackListFile = "${project.projectDir}/blacklist/blackMethodList.txt"
 }
-
-//apply plugin: 'systrace-plugin'
-//systrace {
-//    enable = true
-//    baseMethodMapFile = "${project.buildDir}/systrace_output/Debug.methodmap"
-//    blackListFile = "${project.projectDir}/blacklist/blackMethodList.txt"
-//}

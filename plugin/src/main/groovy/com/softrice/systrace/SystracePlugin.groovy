@@ -19,6 +19,8 @@ class SystracePlugin implements Plugin<Project> {
             throw new GradleException('Systrace Plugin, Android Application plugin required')
         }
 
+        project.getDependencies().add('implementation', 'com.softrice.systrace:tracetag:1.0.0')
+
         project.afterEvaluate {
             def android = project.extensions.android
             def configuration = project.systrace

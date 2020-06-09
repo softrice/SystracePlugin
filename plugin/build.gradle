@@ -27,8 +27,11 @@ dependencies {
     implementation 'com.android.tools.lint:lint:26.0.1'
     implementation 'com.android.tools.lint:lint-api:26.0.1'
     implementation 'com.android.tools.lint:lint-checks:26.0.1'
-
-    compileOnly(project(path: ':tracetag')) {
+//    本地依赖
+//    compileOnly(project(path: ':tracetag')) {
+//        exclude group: 'java'
+//    }
+    compileOnly('com.softrice.systrace:tracetag:1.0.0') {
         exclude group: 'java'
     }
 }
@@ -42,7 +45,7 @@ publish {
 
     artifactId = 'SystracePlugin'
 
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
 
     desc = 'Android plugin for systrace'
 

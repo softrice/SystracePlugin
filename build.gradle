@@ -3,35 +3,24 @@
 buildscript {
 
     repositories {
-        maven {
-            url uri('repo')
-        }
-        google()
         jcenter()
-
+        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
-//        classpath 'com.softrice.systrace:plugin:0.0.1-SNAPSHOT'
+        classpath 'com.softrice.systrace:SystracePlugin:1.0.1'
         classpath 'com.novoda:bintray-release:+'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
 allprojects {
     repositories {
-        maven {
-            url uri('repo')
-        }
-        google()
         jcenter()
-
+        google()
     }
 }
 
-tasks.withType(Javadoc) { // 新增
+tasks.withType(Javadoc) {
     options.addStringOption('Xdoclint:none', '-quiet')
     options.addStringOption('encoding', 'UTF-8')
 }
